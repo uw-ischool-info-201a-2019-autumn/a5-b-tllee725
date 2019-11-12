@@ -1,0 +1,65 @@
+---
+title: "Mass Shooting Report"
+author: "DONALD"
+date: "11/03/2019"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(knitr)
+library(tidyr)
+library(leaflet)
+library(ggplot2)
+source("analysis.R")
+```
+
+## Summary Information 
+
+Link of Original Data Source: 
+<https://www.gunviolencearchive.org/reports/total-number-of-incidents?year=2018>
+
+The total number of shooting events occurred is `r total_events`. The total number of lives lost through shooting events in 2018 was a total of `r lives_lost`. The city that was most impacted by shootings, which is measured by highest number of shooting events is `r impacted_city`. The state that was most impacted by shootings, which is measured by highest number of shooting events is `r impacted_state`. The average number of people killed in gun shooting events is `r average_lives`.
+
+## Summary Table 
+
+The following table shows the average number of people killed and injured per shooting event that occurs in that city. The table is arranged to a descending order of number of people killed. 
+
+`r city_analysis_table`
+
+Through this table. we gain the insight that Pompano Beach has not only the maximum number of people killed per shooting averagely but also the maximum number of people injured per shoooting averagely. We can see the first 4 rows are the extreme values of number of people killed on average as these 4 cities are the only ones who have values that is over 10. For the 4 extreme valued cities, most of the cities have similar value of number of people being killed and injured except for the exception of the city Thousand Oaks. As for the cities that have an average of number of people killed below 10, most of the data shows a big difference between number of killed and number of injured. However, there are limitations for the following representation of data. The extreme values can be explained by the city having only one shooting event while other cities have more than one shooting throughout 2018, in which more shootings tends to lower the average number of people killed and injured. An example that shows this example would be the city of York, which is at the last row of the table while it has been shown York has the most shootings through 2018.
+
+## Description of a Particular Incident
+
+The particular incident that will be focused on would be the one located at Pompano Beach with the most people killed and injured. The incident occured at `r date_of_event` and it happened at `r address`, `r city`, `r state`. The total number of people killed is `r number_killed` and the total number of people injured is `r number_injured`. This particular incident occurred inside Marjory Stoneman Douglas High School. This is the deadliest high school shooting in United States history.
+
+Link to Additional Information: <https://en.wikipedia.org/wiki/Stoneman_Douglas_High_School_shooting>
+
+## Interactive Map
+
+`r map`
+
+The markers circle is bigger when there are more injuries or casualties involved. As shown from the map, more shootings occur at the east coast than at west coast. Other than that, as the radius of the circle indicates number of people killed or injured, east coast tends to have greater casualties and injuries compared to west coast as well. Other than that, it is shown that the lower area of west coast has more shooting events compared to the upper area of west coast.
+
+## Plot of your choice
+
+```{r map2, echo = FALSE}
+  print(map2 + labs(title = "Number of Injured Against Killed", 
+                    y="Number of Injured", x = "Number of Killed"))
+```
+
+In the graph above, the question that I am curious of is the actual correlation between the number of people killed and injured. Although I made a simple conclusion above saying it has a negative correlation, but I am still unsure due to the lack of plotting a graph. Therefore, through plotting this graph, I want to know does the two variables have a positive or negative or no correlation at all? In order to find the correlation between the two variables, a scatter graph is plotted with number of injured as y-axis while number of killed as x-axis. Other than that, a line of regression is plotted on top of the scatter graph, as to establish a clear relationship between the y-axis and x-axis. As shown from the graph, it has a clear scatter plot of having a decrease in the number of injured as the number of killed increases while there are some outliers throughout the total number of killed. This is supported by the negative slope line of regression, indicating the negative relationship between the number of killed and number of injured. As shown by the graph, the line of regression does not completely fit into the points at the range x = 0 to x = 6 as the line of regression is not steep enough. This is explained by the outliers when the number of killed beyond 6 no longer follows the main correlation, in which the great values of number injured and killed reduces the steepness of the negative gradient line.
+
+## Critical Reflection
+
+The data of mass shootings can be used to predict future criminal shooting activities and as claimed by O'Neil, such simulation or predictions made by machiens "were ten times as efficient as random patrolling and twice as precise as analysis delivered by police intelligence." This benefits the police, in which less work can be done with the crime rate continue to be low. More importantly, such models are blind to race and ethnicity, in which the data is only based on geography, in which reduces the bias present in the data.However, it can be argued that geography is a highly effective proxy for a race, which contradicts the statement above. An example would be Pompano Beach, which had the highest number killed shooting, has also one of the highest crime rate in US, has 31.8% African American and 19.9% of Hispanics.More importantly, as according to Kelling and Wilson's "broken-windows" thesis mentioned in O'Neil, the cops are only helping to maintain the standards of order that are upholded in their city instead of imposing the supposed orders set by the law itself on the city. This would result the cities that originally have a high crime rate remain bad while cities with low crime rate remain good. 
+
+
+
+
+
+
+
+
+
+
